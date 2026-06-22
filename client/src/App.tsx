@@ -1,12 +1,21 @@
 import {useState} from 'react'
 import HRD from "./hrdApi"
-import { sendToMicrosoft } from './msalInstance';
+import { msalInstance, sendToMicrosoft } from './msalInstance';
 
 
 function App() {
   const [email, setEmail] = useState("");
   const [_, setResponse] = useState("Loading")
   const [loading, setLoading] = useState(false);
+  const isLoggedIn = msalInstance.getActiveAccount();
+
+  if (isLoggedIn) {
+    return (
+      <div>
+        <h1 className="intro heading-x1">Logged in</h1>
+      </div>
+    )
+  }
 
   var blank = email.trim() === "";
 

@@ -11,12 +11,6 @@ async function startApp() {
 
   if (redirectResult?.account) {
     msalInstance.setActiveAccount(redirectResult.account);
-  } else {
-    const existingAccounts = msalInstance.getAllAccounts();
-
-    if (existingAccounts.length > 0) {
-      msalInstance.setActiveAccount(existingAccounts[0]);
-    }
   }
 
   const mountNode =

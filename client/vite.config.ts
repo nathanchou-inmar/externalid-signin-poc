@@ -15,7 +15,7 @@ export default defineConfig({
       },
     },
   },
-  server: {
+  server: { //Required to bypass the HRD API blocking browser API calls
     proxy: {
       "/authprofileapi": {
         target: "https://ut-hc-platform-authprofileapi.azurewebsites.net",
