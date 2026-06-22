@@ -1,0 +1,6 @@
+# Local Setup
+
+Need to create .env with:
+VITE_ENTRA_CLIENT_ID=
+VITE_ENTRA_TENANT_ID=
+VITE_ENTRA_AUTHORITY=
