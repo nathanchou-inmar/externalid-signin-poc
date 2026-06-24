@@ -1,10 +1,28 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { msalInstance } from './msalInstance.js'
 import './index.css'
 import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+async function startApp() {
+  await msalInstance.initialize();
+
+  const redirectResult = await msalInstance.handleRedirectPromise();
+
+  if (redirectResult?.account) {
+    msalInstance.setActiveAccount(redirectResult.account);
+  }
+
+  const mountNode =
+    document.getElementById("root") ?? document.getElementById("api");
+
+  createRoot(document.getElementById('root')).render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  )
+}
+
+startApp().catch((error) => {
+  console.error("Failed to start app", error);
+});
